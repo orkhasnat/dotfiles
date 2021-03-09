@@ -1,0 +1,181 @@
+# Add useful aliases
+
+# system
+alias sd="sudo "  #very imp to have a space after
+alias vi="nvim"
+alias mi='micro'
+alias path='echo -e ${PATH//:/\\n}'
+alias lf="ranger"
+
+# git :add them when start using git
+#alias addup='git add -u'
+#alias addall='git add .'
+#alias branch='git branch'
+#alias checkout='git checkout'
+#alias clone='git clone'
+#alias commit='git commit -m'
+#alias fetch='git fetch'
+#alias pull='git pull origin'
+#alias push='git push origin'
+#alias stat='git status'  # 'status' is protected name so using 'stat' instead
+#alias tag='git tag'
+#alias newtag='git tag -a'
+
+
+# adding flags
+alias df='df -h' #human readable format
+alias du="du -h" #human readable format
+alias free="free -mt" # show in MB
+alias fc-cache='sudo fc-cache -fv'
+
+#get the error messages from journalctl
+alias jctl="journalctl -p 3 -xb"
+
+#ps : psa shows all : psgrep searches for processes
+alias psa="ps auxf"
+alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
+
+# get top process eating memory
+alias psmem='ps auxf | sort -nr -k 4'
+alias psmem10='ps auxf | sort -nr -k 4 | head -10'
+
+# get top process eating cpu ##
+alias pscpu='ps auxf | sort -nr -k 3'
+alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
+
+# confirm before overwriting something
+alias cp="cp -i"
+alias mv='mv -i'
+alias rm='rm -i'
+
+# movement
+alias ..="cd .."
+alias ...="cd ../.."
+alias .2="cd ../.."
+alias .3="cd ../../.."
+alias .4="cd ../../../.."
+alias .5="cd ../../../../.."
+
+# color
+alias ls='ls --color=auto'
+alias ll='ls -alF'
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# others
+alias wget='wget -c '
+alias speed='speedtest-cli  --simple'
+alias hw="hwinfo --short"
+
+#youtube-dl
+alias yta-aac="youtube-dl --extract-audio --audio-format aac "
+alias yta-best="youtube-dl --extract-audio --audio-format best "
+alias yta-flac="youtube-dl --extract-audio --audio-format flac "
+alias yta-m4a="youtube-dl --extract-audio --audio-format m4a "
+alias yta-mp3="youtube-dl --extract-audio --audio-format mp3 "
+alias yta-opus="youtube-dl --extract-audio --audio-format opus "
+alias yta-vorbis="youtube-dl --extract-audio --audio-format vorbis "
+alias yta-wav="youtube-dl --extract-audio --audio-format wav "
+alias ytv-best="youtube-dl -f bestvideo+bestaudio "
+
+
+#
+#    arch specific
+
+alias pac="sudo pacman --color auto"
+alias pacs="sudo pacman --color auto -S"
+#alias update="sudo pacman -Syyu"
+alias aup="pamac upgrade --aur"
+alias grubup="sudo update-grub"
+alias orphan="sudo pacman -Rns $(pacman -Qtdq)"
+alias fixpac="sudo rm /var/lib/pacman/db.lck"
+
+#Recent Installed Packages
+alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
+alias riplong="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -3000 | nl"
+
+
+
+# Set your countries like --country France --country Germany -- or more.
+#alias upd='sudo reflector --latest 5 --age 2 --fastest 5 --protocol https --sort rate --save /etc/pacman.d/mirrorlist && cat /etc/pacman.d/mirrorlist && sudo pacman -Syu'
+
+## arco linux 
+
+#arcolinux logout unlock
+#alias rmlogoutlock="sudo rm /tmp/arcologout.lock"
+
+#use all cores
+#alias uac="sh ~/.bin/main/000*"
+
+#userlist
+#alias userlist="cut -d: -f1 /etc/passwd"
+
+#merge new settings
+#alias merge="xrdb -merge ~/.Xresources"
+
+#quickly kill conkies
+#alias kc='killall conky'
+
+#check vulnerabilities microcode
+#alias microcode='grep . /sys/devices/system/cpu/vulnerabilities/*'
+
+#get fastest mirrors in your neighborhood
+alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
+alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
+alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
+alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
+
+#alias bls="betterlockscreen -u /usr/share/backgrounds/arcolinux/"
+
+#maintenance
+#alias big="expac -H M '%m\t%n' | sort -h | nl"
+#alias downgrada="sudo downgrade --ala-url https://bike.seedhost.eu/arcolinux/"
+
+#systeminfo
+#alias probe="sudo -E hw-probe -all -upload"
+
+##
+#
+#
+
+## functions
+
+#alias untar='tar -xvf '
+#1. extract = EXtractor for all kinds of archives
+#   usage: extract <file>
+
+extract ()
+{
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1   ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *.deb)       ar x $1      ;;
+      *.tar.xz)    tar xf $1    ;;
+      *)           echo "'$1' cannot be extracted via extract()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+
+#2. take mkdir then cd into the dir
+function take() {
+  mkdir -p $@ && cd ${@:$#}
+}
+#3.change dir plus listing
+function cl() {
+	cd $@ && ll
+}
