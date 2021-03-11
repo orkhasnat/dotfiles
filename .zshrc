@@ -94,6 +94,8 @@ if [[ -n "${terminfo[kcud1]}" ]]; then
   bindkey -M vicmd "${terminfo[kcud1]}" down-line-or-beginning-search
 fi
 
+# Home and End not working for some reason
+
 # [Home] - Go to beginning of line
 if [[ -n "${terminfo[khome]}" ]]; then
   bindkey -M emacs "${terminfo[khome]}" beginning-of-line
@@ -106,6 +108,10 @@ if [[ -n "${terminfo[kend]}" ]]; then
   bindkey -M viins "${terminfo[kend]}"  end-of-line
   bindkey -M vicmd "${terminfo[kend]}"  end-of-line
 fi
+
+bindkey "^[[H" beginning-of-line    #for HOME
+bindkey "^[[F" end-of-line			#for END
+
 
 # [Shift-Tab] - move through the completion menu backwards
 if [[ -n "${terminfo[kcbt]}" ]]; then
