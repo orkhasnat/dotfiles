@@ -1,0 +1,17 @@
+#!/usr/bin/bash
+
+# script to call dmenu and run scripts
+
+dparam="-nb #08020f -nf #fea63c -sb #fea63c -sf #08020f -fn NotoMonoRegular:bold:pixelsize=14"
+
+bind="/home/weirs/bin"
+#locald="/home/weirs/.local/bin"
+
+
+
+run="$(find $bind -type f -executable \
+	| sed "s|/home/weirs/bin/||" | sort \
+	| dmenu -i -l 5 $dparam -p "Scripts" )"
+
+bash "$bind/$run"
+#eval "$bind/$run"
