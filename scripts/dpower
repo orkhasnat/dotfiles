@@ -5,7 +5,7 @@
 colors="-nb #08020F -nf #FEA63C -sb #FEA63C -sf #08020F"
 font="-fn NotoMonoRegular:bold:pixelsize=14 "
 
-Menu="Shutdown\nReboot\nSuspend\nHibernate"
+Menu="Shutdown\nReboot\nSleep\nHibernate"
 
 confirm="No\nYes"
 
