@@ -1,0 +1,13 @@
+#!/usr/bin/bash
+
+# Gives a dmenu prompt labled with $1 to perform command $2.
+# Example: dprompt "Suspend?" "sudo systemctl suspend"
+# Credit : Luke Smith
+# here $1 is the text in the prompt and $2 is the command
+
+[ "$(printf 'No\nYes' \
+    | dmenu -i -l 2 -p "$1" \
+      -nb '#08020f' -nf '#fea63c' -sb '#fea63c' -sf '#08020f'\
+      -fn NotoMonoRegular:bold:pixelsize=14)" = 'Yes' ] && $2
+ 
+
