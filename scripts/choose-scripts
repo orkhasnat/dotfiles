@@ -13,5 +13,5 @@ run="$(find $bind -type f -executable \
 	| sed "s|/home/weirs/bin/||" | sort \
 	| dmenu -i -l 5 $dparam -p "Scripts" )"
 
-bash "$bind/$run"
-#eval "$bind/$run"
+#bash "$bind/$run"
+eval "$bind/$run"
