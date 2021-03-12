@@ -1,0 +1,40 @@
+#!/usr/bin/bash
+
+#script for shutting down pc and others
+
+colors="-nb #08020F -nf #FEA63C -sb #FEA63C -sf #08020F"
+font="-fn NotoMonoRegular:bold:pixelsize=14 "
+
+Menu="Shutdown\nReboot\nSuspend\nHibernate"
+
+confirm="No\nYes"
+
+choose () {
+	chosen="$( echo -e $1 | dmenu -i -l 4 $colors $font -p "$2")"
+}
+
+choose "$Menu" "Power"
+
+case $chosen in
+	"Shutdown")
+		choose "$confirm" "Shutdown"
+		[[ $chosen == "Yes" ]] && shutdown now
+		;;
+	"Reboot")
+		choose "$confirm" "Reboot"
+		[[ $chosen == "Yes" ]] && reboot
+		;;
+	"Sleep")
+		choose "$confirm" "Sleep"
+		[[ $chosen == "Yes" ]] && systemctl suspend
+		;;
+	"Hibernate")
+		choose "$confirm" "Hibernate"
+		[[ $chosen == "Yes" ]] && systemctl hibernate
+		;;
+esac
+
+exit 0
+		
+		
+
