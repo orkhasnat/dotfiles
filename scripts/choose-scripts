@@ -11,8 +11,8 @@ bind="/home/weirs/bin"
 
 run="$(find $bind -type f -executable \
 	| sed "s|/home/weirs/bin/||" | sort \
-	| dmenu -i -l 5 $dparam -p "Scripts" )"
+	| dmenu -i -l 5 $dparam -p "Scripts" )" || exit #removes the exit error
 
-[[ -z $run ]] && exit 0  # removes the error code
+#[[ -z $run ]] && exit 0  # removes the error code
 #bash "$bind/$run"
 eval "$bind/$run"
